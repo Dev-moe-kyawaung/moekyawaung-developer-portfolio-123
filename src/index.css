@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   MK-01 MECHA CORE // INDUSTRIAL HARD-TECH STYLES
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --mecha-void: #090b10;
+  --mecha-gunmetal: #121620;
+  --mecha-titanium: #1a202c;
+  --mecha-armor: #242c3d;
+  --mecha-orange: #ff6b00;
+  --mecha-amber: #ffaa00;
+  --mecha-cyan: #00e5ff;
+  --mecha-green: #00ff66;
+  --mecha-hazard: #ffd000;
+  --mecha-border: rgba(255, 107, 0, 0.35);
+  --blueprint-grid: rgba(0, 229, 255, 0.08);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--mecha-orange) #090b10;
+}
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: #090b10; border-left: 1px solid #1f2737; }
+::-webkit-scrollbar-thumb { 
+  background: linear-gradient(180deg, #ff6b00, #ffaa00, #ff3700); 
+  border: 1px solid #090b10;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--mecha-void);
+  color: #e2e8f0;
+  font-family: 'Share Tech Mono', monospace;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+::selection {
+  background: #ff6b00;
+  color: #090b10;
+}
+
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+.font-chakra { font-family: 'Chakra Petch', sans-serif; }
+.font-mono-code { font-family: 'Fira Code', monospace; }
+.font-teko { font-family: 'Teko', sans-serif; }
+
+/* ═══════════════════════════════════════════════════════
+   BLUEPRINT GRID & SCHEMATIC OVERLAYS
+   ═══════════════════════════════════════════════════════ */
+
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 229, 255, 0.02) 5px, transparent 5px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.02) 5px, transparent 5px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}
+
+.carbon-texture {
+  background: 
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color: #111520;
+  background-size: 16px 16px;
+}
+
+.hazard-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffaa00,
+    #ffaa00 12px,
+    #121620 12px,
+    #121620 24px
+  );
+}
+
+.hazard-stripes-subtle {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 170, 0, 0.35),
+    rgba(255, 170, 0, 0.35) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   INDUSTRIAL SCHEMATIC PANELS
+   ═══════════════════════════════════════════════════════ */
+
+.schematic-panel {
+  background: linear-gradient(145deg, rgba(20, 25, 36, 0.95) 0%, rgba(13, 17, 26, 0.98) 100%);
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 15px rgba(255, 107, 0, 0.03);
+  position: relative;
+  clip-path: polygon(
+    0 10px,
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.schematic-panel:hover {
+  border-color: #ff6b00;
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(255, 107, 0, 0.2),
+    inset 0 0 20px rgba(255, 107, 0, 0.06);
+}
+
+.panel-rivet {
+  width: 6px;
+  height: 6px;
+  background: #39445a;
+  border: 1px solid #161b26;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.8);
+  position: absolute;
+}
+
+/* ═══════════════════════════════════════════════════════
+   GEAR & MECHANICAL ANIMATIONS
+   ═══════════════════════════════════════════════════════ */
+
+@keyframes rotateGear {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateGearCounter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-gear-cw {
+  animation: rotateGear 18s linear infinite;
+}
+
+.animate-gear-ccw {
+  animation: rotateGearCounter 14s linear infinite;
+}
+
+.animate-gear-fast {
+  animation: rotateGear 6s linear infinite;
+}
+
+@keyframes hydraulicPulse {
+  0%, 100% { height: 35%; opacity: 0.8; }
+  50% { height: 85%; opacity: 1; }
+}
+
+.animate-hydraulic {
+  animation: hydraulicPulse 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes laserSweep {
+  0% { transform: translateY(-100%); opacity: 0; }
+  15% { opacity: 0.9; }
+  85% { opacity: 0.9; }
+  100% { transform: translateY(800%); opacity: 0; }
+}
+
+.animate-laser-scan {
+  animation: laserSweep 3.5s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════
+   EXPLODED-VIEW ISOMETRIC TRANSFORMATIONS
+   ═══════════════════════════════════════════════════════ */
+
+.exploded-view-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.exploded-layer-1 {
+  transform: translateZ(0px);
+  transition: transform 0.4s ease;
+}
+
+.exploded-layer-2 {
+  transform: translateZ(35px) translateY(-8px);
+  transition: transform 0.4s ease;
+}
+
+.exploded-layer-3 {
+  transform: translateZ(70px) translateY(-16px);
+  transition: transform 0.4s ease;
+}
+
+.exploded-view-container:hover .exploded-layer-2 {
+  transform: translateZ(60px) translateY(-18px);
+}
+
+.exploded-view-container:hover .exploded-layer-3 {
+  transform: translateZ(120px) translateY(-36px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BUTTONS & TACTICAL SWITCHES
+   ═══════════════════════════════════════════════════════ */
+
+.mecha-btn-primary {
+  background: linear-gradient(180deg, #ff7a1a 0%, #d65000 100%);
+  border: 1px solid #ffaa55;
+  color: #090b10;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mecha-btn-primary:hover {
+  background: linear-gradient(180deg, #ffa033 0%, #ff6b00 100%);
+  box-shadow: 0 6px 25px rgba(255, 107, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.mecha-btn-secondary {
+  background: rgba(18, 22, 32, 0.9);
+  border: 1px solid #3d4a65;
+  color: #00e5ff;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: bold;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  transition: all 0.2s ease;
+}
+
+.mecha-btn-secondary:hover {
+  border-color: #00e5ff;
+  color: #ffffff;
+  background: rgba(0, 229, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   CROSSHAIR CALIBRATION MARKS
+   ═══════════════════════════════════════════════════════ */
+
+.crosshair-mark {
+  position: relative;
+}
+
+.crosshair-mark::before {
+  content: '+';
+  position: absolute;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: rgba(0, 229, 255, 0.6);
+  pointer-events: none;
+}
